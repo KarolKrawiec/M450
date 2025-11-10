@@ -157,16 +157,3 @@ public class PriceCalculatorTest {
     }
 }
 ```
-
-### So führst du das in deiner Entwicklerumgebung aus (Beispiel Java mit IDE wie IntelliJ / Eclipse):
-
-1.  **Dateien erstellen:**
-    *   Erstelle eine neue Java-Klasse namens `PriceCalculator.java` und füge den Code für die `PriceCalculator`-Klasse ein.
-    *   Erstelle eine zweite Java-Klasse namens `PriceCalculatorTest.java` im selben Projekt (oder Paket) und füge den Code für den Testtreiber ein.
-2.  **Kompilieren und Ausführen:**
-    *   Navigiere in deiner IDE zur `PriceCalculatorTest.java`-Datei.
-    *   Führe die `main`-Methode in `PriceCalculatorTest.java` aus (üblicherweise über einen "Run"-Button oder Rechtsklick auf die Datei -> "Run As Java Application").
-3.  **Ergebnisse prüfen:**
-    *   Die Konsole deiner IDE wird die Testergebnisse ausgeben. Du solltest sehen, welche Tests erfolgreich waren und welche (falls es Bugs gäbe) fehlgeschlagen sind.
-
-Diese Struktur bietet einen klaren Überblick über die Funktionsweise der Preisberechnung und die Überprüfung ihrer Korrektheit. 
