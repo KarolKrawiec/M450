@@ -42,7 +42,6 @@
 | F4 | **Bezahlung:** Gültige Karte → Bestätigung; ungültige Karte → verständliche Fehlermeldung   | Erfolgsseite mit Buchungsnummer **oder** klarer Fehler          | –                   | –      | –                |
 | F5 | **Bestätigung & Verwaltung:** E-Mail mit Details; „Manage booking“ ändert/storniert korrekt | Bestätigungsmail empfangen; Änderungen wirken im System         | –                   | –      | –                |
 
-> Optional weiter testen: Altersregeln/Fees, One-Way-Mieten, Extras (Winterreifen), Stornobedingungen.
 
 ---
 
