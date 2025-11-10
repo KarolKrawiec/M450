@@ -33,7 +33,6 @@
 
 # Übung 2 – 5 funktionale Black-Box-Tests (Autovermietung)
 
-Ich nehme als Referenz **Europcar Schweiz** (öffentliche Buchungsseite). Die folgenden Black-Box-Fälle decken Kernfunktionen ab (ohne Codekenntnis). Quelle: Europcar CH Website. ([Europcar][1])
 
 | ID | Beschreibung                                                                                | Erwartetes Resultat                                             | Effektives Resultat | Status | Mögliche Ursache |
 | -- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------- | ------ | ---------------- |
@@ -49,8 +48,6 @@ Ich nehme als Referenz **Europcar Schweiz** (öffentliche Buchungsseite). Die fo
 
 # Übung 3 – Simple Bank-Software (TBZ m450)
 
-Hinweis: Der verlinkte GitLab-Ordner lädt im Browser hier nicht vollständig (JS-Rendering). Ich beziehe mich auf das **m450**-Modulprojekt und die dort beschriebenen Abhängigkeiten (Gson/OkHttp) und leite praxisnahe Tests ab. ([about.gitlab.com][2])
-(OkHttp als HTTP-Client, Gson als JSON-Parser – typische Kombination für API-Clients.) ([GitHub][3])
 
 ## A) Mögliche Black-Box-Testfälle (aus Benutzersicht)
 
