@@ -109,8 +109,6 @@
 
 ---
 
-Wenn du willst, packe ich dir **Übung-2** und **Übung-3** sofort als **Markdown-Dateien** (jeweils separat) zum Download zusammen. Sag einfach „exportieren“, dann bekommst du die Dateien fix & fertig.
-
 [1]: https://www.europcar.ch/en-ch?utm_source=chatgpt.com "Europcar Switzerland: Car Rental - Car & Utility Van Hire"
 [2]: https://gitlab.com/ch-tbz-it/Stud/m450/m450?utm_source=chatgpt.com "m450 - TBZ-IT-Informatik"
 [3]: https://github.com/square/okhttp?utm_source=chatgpt.com "square/okhttp: Square's meticulous HTTP client for the JVM ..."
