@@ -27,10 +27,34 @@
 
 ### Aufgabe 3: Test in der Klasse Preisberechnung
 
+* Java file
+
+```
+public class PriceCalculator {
+
+    public double calculatePrice(double baseprice, double specialprice, double extraprice, int extras, double discount) {
+        double addon_discount_percentage;
+
+        if (extras >= 5) {
+            addon_discount_percentage = 15;
+        } else if (extras >= 3) {
+            addon_discount_percentage = 10;
+        } else {
+            addon_discount_percentage = 0;
+        }
+
+        double price_after_base_discount = baseprice * (100 - discount) / 100.0;
+        double price_after_extra_discount = extraprice * (100 - addon_discount_percentage) / 100.0;
+        double total_result = price_after_base_discount + specialprice + price_after_extra_discount;
+
+        return total_result;
+    }
+}
+```
+
 * Test file
 
 ```
-// PriceCalculatorTest.java
 public class PriceCalculatorTest {
 
     public static void main(String[] args) {
