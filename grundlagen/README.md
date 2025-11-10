@@ -75,3 +75,20 @@ public class PriceCalculatorTest {
     }
 }
 ```
+
+* Resultat
+
+```
+--- Starte Tests für calculatePrice-Methode ---
+✅ Test 1 OK: (Erwartet: 100.00, Tatsächlich: 100.00)
+✅ Test 2 OK: (Erwartet: 90.00, Tatsächlich: 90.00)
+✅ Test 3 OK: (Erwartet: 190.00, Tatsächlich: 190.00)
+✅ Test 4 OK: (Erwartet: 185.00, Tatsächlich: 185.00)
+✅ Test 5 OK: (Erwartet: 180.00, Tatsächlich: 180.00)
+✅ Test 6 OK: (Erwartet: 180.00, Tatsächlich: 180.00)
+✅ Test 7 OK: (Erwartet: 330.00, Tatsächlich: 330.00)
+✅ Test 8 OK: (Erwartet: 200.00, Tatsächlich: 200.00)
+
+--- Testergebnisse Zusammenfassung ---
+✅ Alle Tests erfolgreich!
+```
