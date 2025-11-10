@@ -1,6 +1,6 @@
 # Grundlagen
 
-### Aufgabe 1: Formen von Tests in der Informatik (Kurzfassung)
+### Aufgabe 1: Formen von Tests in der Informatik
 
 1.  **Unit-Tests (Komponententests):**
     *   **Beschreibung:** Testen isolierte Code-Einheiten (z.B. Methoden), um deren korrekte Funktion sicherzustellen.
