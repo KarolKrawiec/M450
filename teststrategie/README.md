@@ -45,66 +45,62 @@
 
 ---
 
-# Übung 3 – Simple Bank-Software (TBZ m450)
+# Teststrategie – Simple Bank-Software (Aufgabe 3)
 
+## 1. Kurzbeschreibung der Software
 
-## A) Mögliche Black-Box-Testfälle (aus Benutzersicht)
+Die Konsole-App simuliert einen Bankschalter:
 
-| ID  | Feature               | Eingabe                                          | Erwartetes Resultat                                          |
-| --- | --------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| B1  | Konto anlegen         | gültiger Name, Anfangssaldo ≥ 0                  | Konto-ID wird erstellt, Saldo korrekt initialisiert          |
-| B2  | Kontostand abfragen   | bestehende Konto-ID                              | Rückgabe `balance` als **BigDecimal** mit 2 Nachkommastellen |
-| B3  | Einzahlung            | Konto-ID, Betrag > 0                             | Neuer Saldo = alter + Betrag                                 |
-| B4  | Auszahlung            | Konto-ID, Betrag > 0, Saldo ≥ Betrag             | Neuer Saldo = alter − Betrag                                 |
-| B5  | Auszahlung unzulässig | Konto-ID, Betrag > Saldo                         | Fehler „unz. Deckung“ (keine Änderung am Saldo)              |
-| B6  | Überweisung           | Quell-ID, Ziel-ID, Betrag > 0, Deckung vorhanden | Beide Salden korrekt angepasst; Transaktion atomar           |
-| B7  | Überweisung Fehler    | Quell-ID existiert nicht                         | Fehler „Konto nicht gefunden“                                |
-| B8  | Input-Validierung     | Betrag ≤ 0 oder ungültiges Format                | Valider Fehlerstatus, keine Zustandsänderung                 |
-| B9  | API-Fehlerbehandlung  | Netzwerk down / 500er vom Server                 | Robuste Fehlermeldung, kein Crash                            |
-| B10 | JSON-Parsing          | Server liefert unerwartetes Feld/fehlendes Feld  | Sinnvolle Fehlermeldung, Fallback/Abbruch                    |
+- In `Main` werden fünf Beispielkonten erstellt (Rockefeller, Gates, usw.).
+- Über die Klasse `Counter` kann der Benutzer per Menü:
+  - ein Konto auswählen,
+  - den Kontostand anzeigen,
+  - Geld einzahlen,
+  - Geld abheben,
+  - Geld auf ein anderes Konto überweisen,
+  - neue Konten erstellen,
+  - den Wechselkurs über `ExchangeRateOkhttp` abfragen.
+- Die Klasse `Bank` verwaltet alle `Account`-Objekte (erstellen, holen, löschen, anzeigen).
+- Ein `Account` speichert: Kundennachname, Währung (`Currency`), Kontostand (`balance`) und eine ID.
 
-## B) White-Box-Kandidaten (Methoden/Logik, die man gezielt unit-testen sollte)
+---
 
-> Bezeichner variieren je nach Code – die Funktionalität sollte so oder ähnlich existieren:
+## 2. Mögliche Black-Box-Testfälle (Benutzersicht)
 
-* `AccountService.createAccount(name, initialBalance)`
-* `AccountService.getBalance(accountId)`
-* `AccountService.deposit(accountId, amount)`
-* `AccountService.withdraw(accountId, amount)`
-* `TransferService.transfer(fromId, toId, amount)` **(Transaktionsatomarität & Rollback testen)**
-* `AmountValidator.validate(amount)` (**Grenzwerte, Rundung**)
-* `BankApiClient` (OkHttp-Requests: Zeitüberschreitungen, Fehlercodes, Retries)
-* `JsonMapper.parseAccount(json)` / `parseError(json)` (Gson-Mapping, Null-Handling)
+Diese Testfälle gehen davon aus, dass ich nur das Verhalten über die Konsole kenne (kein Blick in den Code).
 
-## C) Verbesserungsvorschläge / Best Practices (kurz & knackig)
+| ID   | Beschreibung                               | Eingaben / Vorbedingung                                                | Erwartetes Ergebnis                                                                 |
+|------|--------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| BB1  | Programmstart                              | Programm auf der Konsole starten                                       | Starttext / Begrüssung wird angezeigt, Menü vom `Counter` erscheint                |
+| BB2  | Konto-Liste anzeigen                       | Im Menü Option „alle Konten anzeigen“ wählen                            | Liste aller Konten mit Nummer, Namen und Währung wird angezeigt                    |
+| BB3  | Kontostand anzeigen                        | Konto-Nr. eines existierenden Kontos eingeben, Option „Kontostand“     | Aktueller Kontostand mit 2 Nachkommastellen und richtiger Währung wird angezeigt   |
+| BB4  | Geld einzahlen                             | Konto auswählen, Option „Einzahlen“, z. B. Betrag 100.00 eingeben       | Bestätigung und neuer Kontostand = alter Kontostand + 100.00                       |
+| BB5  | Geld abheben (genug Guthaben)              | Konto mit mind. 100 CHF, Option „Abheben“, Betrag 50.00 eingeben       | Bestätigung und neuer Kontostand = alter Kontostand – 50.00                        |
+| BB6  | Geld abheben (zu wenig Guthaben)           | Konto mit z. B. 20 CHF, Option „Abheben“, Betrag 100.00 eingeben       | Fehlermeldung (nicht genug Guthaben), Kontostand bleibt unverändert                |
+| BB7  | Geld auf anderes Konto überweisen          | Konto A wählen, Option „Überweisen“, Konto B auswählen, Betrag 10.00    | Kontostand von A wird um 10.00 reduziert, Kontostand von B um 10.00 erhöht         |
+| BB8  | Überweisung mit ungültiger Zielkontonummer | Konto A wählen, Option „Überweisen“, nicht existierende Konto-Nr.       | Fehlermeldung „Konto nicht gefunden“ o.ä., Kontostände bleiben unverändert         |
+| BB9  | Neues Konto erstellen                      | Option „Konto erstellen“, Name und Währung eingeben, Startsaldo > 0     | Neues Konto mit neuer ID wird angelegt und in der Kontoliste angezeigt             |
+| BB10 | Wechselkurs abfragen                       | Option „Wechselkurs abfragen“ wählen, z. B. von EUR zu CHF              | Wechselkurs wird abgefragt und angezeigt oder sinnvoller Fehler bei API-Problem    |
+| BB11 | Programm beenden                           | Im Hauptmenü „q“ eingeben                                              | Programm beendet sich geordnet (kein Fehler-Stacktrace)                            |
 
-* **Geldbeträge als `BigDecimal`** (Skalierung/`RoundingMode.HALF_EVEN`), keine `double`-Mathematik.
-* **Input-Validierung überall** (negativ, Null, zu viele Nachkommastellen).
-* **Fehlerbehandlung**: Unterschiedliche Exceptions/Result-Typen für 4xx/5xx/Network.
-* **Transaktionen**: Überweisung atomar (im Speicher mit Locks oder DB-Transaktion).
-* **Thread-Safety**: Synchronisation/Locks bei gemeinsamem Zustand; ggf. immutable DTOs.
-* **Schichten**: Trennung Domain (Service) ↔︎ Adapter (OkHttp/Gson) ↔︎ UI/CLI.
-* **Tests**: JUnit 5; Mocks/Stubs für HTTP (z. B. MockWebServer); **Property-based Tests** für Beträge.
-* **Logging** (strukturiert), **Konfiguration** (Timeouts, Base-URL) via Env/Config.
-* **Namensgebung & Clean Code** (kleine Methoden, Single Responsibility).
+---
 
-## D) Tabellarische Testübersicht (für dein Repo, Markdown-ready)
+## 3. Kandidaten für White-Box-Testfälle (Methoden im Code)
 
-```markdown
-# Testfälle – Simple Bank App
+Hier geht es um Methoden, die man mit Unit-Tests (z. B. JUnit) gezielt testen könnte.
 
-| ID  | Typ         | Beschreibung                              | Eingabe/Arrange                          | Erwartet                              | Status | Notizen |
-|-----|-------------|--------------------------------------------|------------------------------------------|----------------------------------------|--------|--------|
-| B1  | Black-Box   | Konto anlegen                              | name="G", init=100.00                    | 201 Created, id!=null, balance=100.00  |        |        |
-| B2  | Black-Box   | Kontostand                                 | id=EXISTING                              | 200 OK, balance=… (BigDecimal, 2 dp)   |        |        |
-| B3  | Black-Box   | Einzahlung                                 | id=EXISTING, amount=25.50                | balance+=25.50                         |        |        |
-| B4  | Black-Box   | Auszahlung                                 | id=EXISTING, amount=10.00, cover ok      | balance-=10.00                         |        |        |
-| B5  | Black-Box   | Auszahlung (keine Deckung)                 | id=EXISTING, amount=9999                 | 400/422 Error, balance unverändert     |        |        |
-| B6  | Black-Box   | Überweisung atomar                         | from=A, to=B, amount=5.00                | A-=5.00, B+=5.00 (beides oder keins)   |        |        |
-| W1  | White-Box   | AmountValidator – Grenzwerte               | 0, -1, 0.001, 1.005                       | invalid, invalid, invalid, rounded OK  |        |        |
-| W2  | White-Box   | TransferService – Rollback bei Fehler      | from=A (5.00), to=NE |                    | keine Änderung bei A                   |        |        |
-| W3  | White-Box   | BankApiClient – Timeout/500 Handling       | simulate timeout / HTTP 500              | Retry/Fehlerobjekt, kein Crash         |        |        |
-```
+### 3.1 Wichtige Methoden in `Account`
+
+```java
+public Account(String userLastName, Currency currency, double startBalance)
+public void deposit(double amount)
+public boolean withdraw(double amount)
+public double getBalance()
+public Currency getCurrency()
+public String getUserLastName()
+public int getId()
+public void pseudoDeleteAccount()
+
 
 ---
 
