@@ -57,3 +57,94 @@
 ---
 
 **Zusammenfassende Abhängigkeit:** Der **Testansatz** führt durch die **Test Levels**, wo **Testarten** angewendet werden. **Testtechniken** helfen bei der Testfallerstellung, und **Testtaktiken** bei der effizienten Ausführung.
+
+
+# JUnit Aufgaben – Java/Maven Projekt
+
+Dieses Repository enthält die Lösungen zu den vier vorgegebenen JUnit-Aufgaben.  
+Alle Arbeiten wurden in einem Maven-Projekt umgesetzt und gemäss Aufgabenstellung dokumentiert und getestet.
+
+---
+
+## 🧩 Aufgabe 1 – Simpler Rechner
+
+**Ziel:** Einstieg in JUnit 5, Erstellung einer eigenen Klasse sowie dazugehörigen Unit-Tests.
+
+**Umsetzung enthalten im Repository:**
+
+| Art | Datei | Inhalt |
+|------|--------|----------|
+| Klasse (Main) | `src/main/java/.../Calculator.java` | Methoden: `add`, `subtract`, `multiply`, `divide` |
+| Testklasse | `src/test/java/.../CalculatorTest.java` | Verschiedene Testfälle pro Methode inkl. Division-by-Zero-Exception |
+
+**Testanforderungen erfüllt:**
+
+- Alle vier Methoden implementiert (`+`, `−`, `*`, `/`)
+- Verschiedene Testfälle (positive, negative, Randfälle)
+- Testausführung über IDE **und** Maven (`mvn test`)
+- Nutzung von JUnit 5 Assertions und Annotations
+
+---
+
+## 🧩 Aufgabe 2 – JUnit Zusammenfassung
+
+**Ziel:** Wichtigste Grundlagen von JUnit dokumentieren.
+
+**Dokumentation:**  
+➡️ `docs/junit-zusammenfassung.md`
+
+Enthält:
+
+- Erklärung was JUnit und Unit-Testing sind
+- Wichtige JUnit 5 Annotations (`@Test`, `@BeforeEach`, `@AfterAll`, usw.)
+- Beispielsnippets
+- Assertions-Übersicht
+- Referenz-Link zur offiziellen Dokumentation
+
+---
+
+## 🧩 Aufgabe 3 – Banken-Simulation (Verstehen & Dokumentieren)
+
+**Ziel:** Vorhandene Bank-Simulation analysieren und Verständnis dokumentieren.
+
+**Dokumentation:**  
+➡️ `docs/banken-simulation-notizen.md`
+
+Inhalt:
+
+- Übersicht über Software-Ziel
+- Auflistung der relevanten Klassen
+- Beschreibung der Beziehungen (z. B. Konto ↔ Bank ↔ Transaktion)
+- Grundlegender Ablauf anhand typischer Schritte
+
+---
+
+## 🧩 Aufgabe 4 – Unit-Tests für Banken-Simulation
+
+**Ziel:** Software-Logik mit Unit-Tests abdecken und sinnvolle Coverage erreichen.
+
+**Im Repository enthalten:**  
+Unter `src/test/java/.../bank/...`
+
+Getestete Bereiche z. B.:
+
+- Kontofunktionen (`deposit`, `withdraw`)
+- Fehlerfälle (z. B. negative Beträge, zu geringe Mittel)
+- Bank-Operationen (`transfer` Validität & Ergebnis)
+- Exceptions / Sonderfälle
+
+Ziel war **funktionale Kernlogik sinnvoll abzudecken**, nicht 100% Coverage um jeden Preis.
+
+---
+
+## 🧪 Tests ausführen
+
+### IDE
+
+Rechtsklick → `Run Tests`  
+oder Testklasse auswählen
+
+### Maven (Konsole)
+
+```bash
+mvn test
