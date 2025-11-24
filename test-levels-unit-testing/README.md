@@ -8,13 +8,10 @@
 ### Mit welchen Test Levels hatten wir bereits zu tun?
 - **Unit Testing:** Entwickler.
 - **Integration Testing:** Entwickler (White-Box) & QA-Team (Black-Box).
-- **System Testing:** QA-Team vor Releases.
-- **Acceptance Testing (UAT):** Key-User/Business vor Go-Live.
 
 ### Wann werden Tests ausgeführt?
 - Automatisierte Tests: Bei jedem Code-Commit (CI/CD).
 - Manuelle Tests: In Testzyklen vor Releases/Sprint-Enden.
-- UAT: Vor Deployment.
 
 ### Haben wir dedizierte Testing oder QA Teams?
 - Ja, dediziertes QA-Team für Integration, System, UAT-Teile.
