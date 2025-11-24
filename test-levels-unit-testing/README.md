@@ -58,7 +58,7 @@ Da ich den Code deiner spezifischen "Banken Simulation" aus Aufgabe 3 nicht sehe
 
 ---
 
-```markdown
+
 # 📝 Lösungen: JUnit 5 Workshop (Aufgaben 1-4)
 
 Dieses Dokument enthält den Source-Code, die Tests und die Dokumentation für die Aufgaben 1 bis 4.
