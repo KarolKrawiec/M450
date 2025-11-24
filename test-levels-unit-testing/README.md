@@ -16,7 +16,6 @@
 ### Haben wir dedizierte Testing oder QA Teams?
 - Ja, dediziertes QA-Team für Integration, System, UAT-Teile.
 - Entwickler sind für Unit- und Teile der Integrationstests zuständig.
-- "Whole Team Approach" (Qualität = Verantwortung aller).
 
 ### Wie sieht unser Testing Life Cycle aus?
 - Planung (basierend auf Stories), Testfallerstellung.
