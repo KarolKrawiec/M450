@@ -1,4 +1,4 @@
-package ControllerTests;
+package ch.tbz.recipe.planner.controller;
 
 import ch.tbz.recipe.planner.RecipePlannerApplication;
 import ch.tbz.recipe.planner.domain.Recipe;
@@ -59,12 +59,13 @@ public class RecipeControllerTest {
 
     @Test
     public void testAddRecipe() throws Exception {
-        Recipe newRecipe = new Recipe(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl", Collections.emptyList());
+        Recipe newRecipe = new Recipe(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl",
+                Collections.emptyList());
         when(recipeService.addRecipe(newRecipe)).thenReturn(newRecipe);
 
         mockMvc.perform(post("/api/recipes")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(newRecipe)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(newRecipe)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value(newRecipe.getName()));
     }

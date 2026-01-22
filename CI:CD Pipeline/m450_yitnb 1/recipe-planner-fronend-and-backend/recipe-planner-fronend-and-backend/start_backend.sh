@@ -10,4 +10,5 @@ echo "Starting Backend..."
 cd "$(dirname "$0")/recipe-planner-backend"
 
 # Run Spring Boot application
-mvn spring-boot:run
+mvn clean package -Dmaven.test.skip=true
+java -jar target/recipe-planner-backend-1.0-SNAPSHOT.jar

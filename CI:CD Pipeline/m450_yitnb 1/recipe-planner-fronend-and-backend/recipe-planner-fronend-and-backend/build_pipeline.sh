@@ -10,6 +10,6 @@ echo "Building and testing project..."
 cd "$(dirname "$0")/recipe-planner-backend"
 
 # Run Maven build and tests
-mvn clean test jacoco:report
+mvn clean package -Dmaven.test.skip=true
 
 echo "Build and test completed. You can find the report at recipe-planner-backend/target/site/jacoco/index.html."

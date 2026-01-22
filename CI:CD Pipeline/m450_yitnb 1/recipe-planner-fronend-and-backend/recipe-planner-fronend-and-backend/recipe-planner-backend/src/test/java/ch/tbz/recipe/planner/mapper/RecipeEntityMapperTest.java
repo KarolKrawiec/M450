@@ -1,9 +1,9 @@
-package MapperTests;
+package ch.tbz.recipe.planner.mapper;
 
 import ch.tbz.recipe.planner.domain.Recipe;
 import ch.tbz.recipe.planner.entities.RecipeEntity;
-import ch.tbz.recipe.planner.mapper.RecipeEntityMapper;
-import ch.tbz.recipe.planner.mapper.RecipeEntityMapperImpl;
+import ch.tbz.recipe.planner.domain.Recipe;
+import ch.tbz.recipe.planner.entities.RecipeEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,8 @@ public class RecipeEntityMapperTest {
 
     @Test
     public void testMapRecipeToEntity() {
-        Recipe recipe = new Recipe(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl", Collections.emptyList());
+        Recipe recipe = new Recipe(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl",
+                Collections.emptyList());
         RecipeEntity recipeEntity = recipeEntityMapper.domainToEntity(recipe);
 
         SoftAssertions softly = new SoftAssertions();
@@ -28,7 +29,8 @@ public class RecipeEntityMapperTest {
 
     @Test
     public void testMapEntityToRecipe() {
-        RecipeEntity recipeEntity = new RecipeEntity(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl", Collections.emptyList());
+        RecipeEntity recipeEntity = new RecipeEntity(UUID.randomUUID(), "Pasta", "Delicious pasta recipe", "imageUrl",
+                Collections.emptyList());
         Recipe recipe = recipeEntityMapper.entityToDomain(recipeEntity);
 
         SoftAssertions softly = new SoftAssertions();

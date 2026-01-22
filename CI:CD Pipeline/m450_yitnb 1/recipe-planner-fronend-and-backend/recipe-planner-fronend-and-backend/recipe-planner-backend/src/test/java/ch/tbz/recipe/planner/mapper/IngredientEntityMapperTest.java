@@ -1,9 +1,9 @@
-package MapperTests;
+package ch.tbz.recipe.planner.mapper;
 
 import ch.tbz.recipe.planner.domain.Ingredient;
 import ch.tbz.recipe.planner.entities.IngredientEntity;
-import ch.tbz.recipe.planner.mapper.IngredientEntityMapper;
-import ch.tbz.recipe.planner.mapper.IngredientEntityMapperImpl;
+import ch.tbz.recipe.planner.domain.Ingredient;
+import ch.tbz.recipe.planner.entities.IngredientEntity;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
